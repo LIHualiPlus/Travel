@@ -10,9 +10,7 @@ namespace Travel.Api.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
-
-            return View();
+            return Content("This is a host by Lunz.");
         }
     }
 }

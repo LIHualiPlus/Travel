@@ -1,0 +1,383 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TravelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__EFMigrationsHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="255" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityType Name="DonationDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="CompanyId" Type="int" />
+          <Property Name="about" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Travel_Notes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="DeteletedAt" Type="datetime" />
+          <Property Name="WriterId" Type="int" />
+          <Property Name="Test" Type="varchar" MaxLength="255" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="PlaceId" Type="uniqueidentifier" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“Travel.dbo.Travel_Places”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="Travel_Places">
+          <Key>
+            <PropertyRef Name="Deleted" />
+          </Key>
+          <Property Name="Id " Type="uniqueidentifier" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="Position" Type="varchar" MaxLength="255" />
+          <Property Name="DeletedAt" Type="datetime" />
+          <Property Name="Info" Type="varchar" MaxLength="255" />
+          <Property Name="Stars" Type="int" />
+          <Property Name="Statue" Type="varchar" MaxLength="255" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“Travel.dbo.User_Ship”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="User_Ship">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Deleted" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="Sex" Type="bit" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="255" />
+          <Property Name="Phone" Type="varchar" MaxLength="255" />
+          <Property Name="Introduce" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK__DonationD__Compa__5441852A">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="DonationDetail" Type="Self.DonationDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="DonationDetail">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TravelModelStoreContainer">
+          <EntitySet Name="__EFMigrationsHistory" EntityType="Self.__EFMigrationsHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DonationDetail" EntityType="Self.DonationDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Travel_Notes" EntityType="Self.Travel_Notes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Travel_Places" EntityType="Self.Travel_Places" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Travel_Places].[Id ] AS [Id ], 
+    [Travel_Places].[CreatedAt] AS [CreatedAt], 
+    [Travel_Places].[UpdatedAt] AS [UpdatedAt], 
+    [Travel_Places].[Name] AS [Name], 
+    [Travel_Places].[Position] AS [Position], 
+    [Travel_Places].[DeletedAt] AS [DeletedAt], 
+    [Travel_Places].[Info] AS [Info], 
+    [Travel_Places].[Stars] AS [Stars], 
+    [Travel_Places].[Statue] AS [Statue], 
+    [Travel_Places].[Deleted] AS [Deleted]
+    FROM [dbo].[Travel_Places] AS [Travel_Places]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="User_Ship" EntityType="Self.User_Ship" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [User_Ship].[Id] AS [Id], 
+    [User_Ship].[Name] AS [Name], 
+    [User_Ship].[CreatedAt] AS [CreatedAt], 
+    [User_Ship].[UpdatedAt] AS [UpdatedAt], 
+    [User_Ship].[Sex] AS [Sex], 
+    [User_Ship].[Deleted] AS [Deleted], 
+    [User_Ship].[Address] AS [Address], 
+    [User_Ship].[Phone] AS [Phone], 
+    [User_Ship].[Introduce] AS [Introduce]
+    FROM [dbo].[User_Ship] AS [User_Ship]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__DonationD__Compa__5441852A" Association="Self.FK__DonationD__Compa__5441852A">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="DonationDetail" EntitySet="DonationDetail" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TravelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__EFMigrationsHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="DonationDetail" Relationship="Self.FK__DonationD__Compa__5441852A" FromRole="Company" ToRole="DonationDetail" />
+        </EntityType>
+        <EntityType Name="DonationDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="CompanyId" Type="Int32" />
+          <Property Name="about" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Company" Relationship="Self.FK__DonationD__Compa__5441852A" FromRole="DonationDetail" ToRole="Company" />
+        </EntityType>
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Genre" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Movies">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Genre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UserDetails" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK__DonationD__Compa__5441852A">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="DonationDetail" Type="Self.DonationDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="DonationDetail">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TravelEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__EFMigrationsHistory" EntityType="Self.C__EFMigrationsHistory" />
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="Company" EntityType="Self.Company" />
+          <EntitySet Name="DonationDetail" EntityType="Self.DonationDetail" />
+          <EntitySet Name="Movie" EntityType="Self.Movie" />
+          <EntitySet Name="Movies" EntityType="Self.Movies" />
+          <EntitySet Name="UserInfo" EntityType="Self.UserInfo" />
+          <AssociationSet Name="FK__DonationD__Compa__5441852A" Association="Self.FK__DonationD__Compa__5441852A">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="DonationDetail" EntitySet="DonationDetail" />
+          </AssociationSet>
+          <EntitySet Name="Travel_Notes" EntityType="TravelModel.Travel_Notes" />
+          <EntitySet Name="Travel_Places" EntityType="TravelModel.Travel_Places" />
+          <EntitySet Name="User_Ship" EntityType="TravelModel.User_Ship" />
+        </EntityContainer>
+        <EntityType Name="Travel_Notes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <Property Name="DeteletedAt" Type="DateTime" Precision="3" />
+          <Property Name="WriterId" Type="Int32" />
+          <Property Name="Test" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="PlaceId" Type="Guid" />
+        </EntityType>
+        <EntityType Name="Travel_Places">
+          <Key>
+            <PropertyRef Name="Deleted" />
+          </Key>
+          <Property Name="Id_" Type="Guid" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Position" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DeletedAt" Type="DateTime" Precision="3" />
+          <Property Name="Info" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Stars" Type="Int32" />
+          <Property Name="Statue" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User_Ship">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Deleted" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <Property Name="Sex" Type="Boolean" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Introduce" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TravelModelStoreContainer" CdmEntityContainer="TravelEntities">
+          <EntitySetMapping Name="C__EFMigrationsHistory">
+            <EntityTypeMapping TypeName="TravelModel.C__EFMigrationsHistory">
+              <MappingFragment StoreEntitySet="__EFMigrationsHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="TravelModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Company">
+            <EntityTypeMapping TypeName="TravelModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DonationDetail">
+            <EntityTypeMapping TypeName="TravelModel.DonationDetail">
+              <MappingFragment StoreEntitySet="DonationDetail">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="about" ColumnName="about" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Travel_Notes">
+            <EntityTypeMapping TypeName="TravelModel.Travel_Notes">
+              <MappingFragment StoreEntitySet="Travel_Notes">
+                <ScalarProperty Name="PlaceId" ColumnName="PlaceId" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Test" ColumnName="Test" />
+                <ScalarProperty Name="WriterId" ColumnName="WriterId" />
+                <ScalarProperty Name="DeteletedAt" ColumnName="DeteletedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Travel_Places">
+            <EntityTypeMapping TypeName="TravelModel.Travel_Places">
+              <MappingFragment StoreEntitySet="Travel_Places">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Statue" ColumnName="Statue" />
+                <ScalarProperty Name="Stars" ColumnName="Stars" />
+                <ScalarProperty Name="Info" ColumnName="Info" />
+                <ScalarProperty Name="DeletedAt" ColumnName="DeletedAt" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Id_" ColumnName="Id " />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Ship">
+            <EntityTypeMapping TypeName="TravelModel.User_Ship">
+              <MappingFragment StoreEntitySet="User_Ship">
+                <ScalarProperty Name="Introduce" ColumnName="Introduce" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

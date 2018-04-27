@@ -5,6 +5,16 @@ VisualStudioVersion = 15.0.27428.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travel.Management", "Travel.Management\Travel.Management.csproj", "{A7E28CD1-EF64-4776-9E11-66DB8F234CEC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frameworks", "Frameworks", "{1A9F9768-B689-4784-B2A8-472B8EC6038B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{151CE917-2087-4E22-AEB8-E619C5D6C17C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travel.DataBase", "Travel.DataBase\Travel.DataBase.csproj", "{FFD59F1C-8991-41E5-B9F9-C34C96061177}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travel.Models", "Travel.Models\Travel.Models.csproj", "{A868B24E-C04C-497F-8C86-07EF967BBA84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travel.Services", "Travel.Services\Travel.Services.csproj", "{B7D1EB4D-B8E8-41DC-A826-5A5743522265}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +25,27 @@ Global
 		{A7E28CD1-EF64-4776-9E11-66DB8F234CEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7E28CD1-EF64-4776-9E11-66DB8F234CEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7E28CD1-EF64-4776-9E11-66DB8F234CEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFD59F1C-8991-41E5-B9F9-C34C96061177}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFD59F1C-8991-41E5-B9F9-C34C96061177}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFD59F1C-8991-41E5-B9F9-C34C96061177}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFD59F1C-8991-41E5-B9F9-C34C96061177}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A868B24E-C04C-497F-8C86-07EF967BBA84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A868B24E-C04C-497F-8C86-07EF967BBA84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A868B24E-C04C-497F-8C86-07EF967BBA84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A868B24E-C04C-497F-8C86-07EF967BBA84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7D1EB4D-B8E8-41DC-A826-5A5743522265}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7D1EB4D-B8E8-41DC-A826-5A5743522265}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7D1EB4D-B8E8-41DC-A826-5A5743522265}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7D1EB4D-B8E8-41DC-A826-5A5743522265}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{151CE917-2087-4E22-AEB8-E619C5D6C17C} = {1A9F9768-B689-4784-B2A8-472B8EC6038B}
+		{FFD59F1C-8991-41E5-B9F9-C34C96061177} = {151CE917-2087-4E22-AEB8-E619C5D6C17C}
+		{A868B24E-C04C-497F-8C86-07EF967BBA84} = {151CE917-2087-4E22-AEB8-E619C5D6C17C}
+		{B7D1EB4D-B8E8-41DC-A826-5A5743522265} = {151CE917-2087-4E22-AEB8-E619C5D6C17C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0976E20D-578C-478A-9DC0-EA9AF23DB944}
